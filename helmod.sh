@@ -40,7 +40,7 @@ helmod() {
             ;;
         spider | query)
             shift;
-            module-query.py $@
+            test `which module-query.py >/dev/null 2>&1` && module-query.py $@ || eval $($LMOD_CMD bash "$@") && eval $(${LMOD_SETTARG_CMD:-:} -s sh)
             ;;
         *)
             eval $($LMOD_CMD bash "$@") && eval $(${LMOD_SETTARG_CMD:-:} -s sh)
